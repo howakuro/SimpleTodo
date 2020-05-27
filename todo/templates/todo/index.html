@@ -1,0 +1,58 @@
+{% extends "todo/base.html" %}
+
+{% block main %}
+    <main>
+        <div class="container">
+            <h3 class="m-3"><b>ToDo List</b></h3>
+            <table class="table">
+                <thead>
+                    <tr><th>Task</th><th>State</th><th>DeadLine</th><th></th></tr>
+                </thead>
+                {% for todo in latest_todo_list %}
+                    <tr>
+                        <td>{{ todo.task }}</td>
+                        <td>{{ todo.state }}</td>
+                        <td>{{ todo.deadline }}</td>
+                        <td>
+                            <div class="float-right">
+                                {% if not todo.state_is_done %}
+                                <form class="d-inline" method="post" action="{% url 'todo:done' todo.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success rounded-circle mx-2">
+                                        <span class="material-icons">done</span>
+                                    </button>
+                                </form>
+                                {% endif %}
+                                <form class="d-inline" method="get" action="{% url 'todo:edit' todo.id%}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-info rounded-circle mx-2">
+                                        <span class="material-icons">edit</span>
+                                    </button>
+                                </form>
+                                <form class="d-inline" method="post" action="{% url "todo:delete" todo.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger rounded-circle mx-2">
+                                        <span class="material-icons">delete_forever</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% if latest_todo_list%}
+                <div class="float-right">
+                    <button type="button" class="btn btn-danger rounded-circle pull-right" onclick="location.href='{% url "todo:create" %}'">
+                        <span class="material-icons">add</span>
+                    </button>
+                </div>
+            {% else %}
+                <div class="float-left">
+                    <button type="button" class="btn btn-danger rounded-circle pull-right" onclick="location.href='{% url "todo:create" %}'">
+                        <span class="material-icons">add</span>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
