@@ -26,16 +26,35 @@ class Task(models.Model):
         return self.task
 
     def state_is_done(self):
+        """
+        stateがdone
+        """
         return self.state == "Done"
 
     def state_is_do(self):
+        """
+        stateがdo
+        """
         return self.state == "Do"
     
     def state_is_todo(self):
+        """
+        stateがtodo
+        """
         return self.state == "ToDo"
-    
+
     def deadline_exceeded(self):
-        return timezone.now() > deadline
+        """
+        deadline（締切）が超過した
+        """
+        return self.deadline < timezone.now()
+    
+    def deadline_approaching(self):
+        """
+        deadline（締切）が近い（後1日で締め切り）
+        """
+        near_deadline = self.deadline - datetime.timedelta(days=1)
+        return near_deadline < timezone.now() < self.deadline
 
 
     

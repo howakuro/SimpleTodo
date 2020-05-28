@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
     template_name ='todo/index.html'
     context_object_name= 'latest_todo_list'
     def get_queryset(self):
-        return Task.objects.order_by('deadline')
+        return sorted(Task.objects.order_by('deadline'), key=lambda task: not task.state_is_done(), reverse=True)
 
 class TaskEditView(generic.UpdateView):
     model = Task

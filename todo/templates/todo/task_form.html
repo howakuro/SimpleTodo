@@ -10,7 +10,22 @@
                 {% endif %}
                 <form method="post" enctype="multipart/form-data" action="">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <div class="state">
+                        {{ form.state.errors }}
+                        <label for="{{ form.state.id_for_label }}">State:</label>
+                        {{ form.state }}
+                    </div>
+                    <div class="task py-3">
+                        {{ form.state.errors }}
+                        <label for="{{ form.task.id_for_label }}">Task:</label>
+                        {{ form.task }}
+                    </div>    
+                    <div class="deadline py-3">
+                        {{ form.deadline.errors }}
+                        <label for="{{ form.deadline.id_for_label }}">Limit:</label>
+                        {{ form.deadline }}
+                    </div>
+                    {% comment %} {{ form.as_p }} {% endcomment %}
                     <div class="form-group" style="padding:20px 0">
                         {% if not form %}
                             <input type="submit" value="Append" class="btn btn-primary"/>
@@ -21,4 +36,7 @@
                 </form>
         </div>
     </main>
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'todo/task_form.css' %}">
+        <script src="{% static 'todo/task_form.js' %}"></script>
 {% endblock %}
