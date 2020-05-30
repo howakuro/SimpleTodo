@@ -1,0 +1,30 @@
+{% extends "todo/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block main %}
+<main> 
+    <div class="container">
+        <h1 class="m-3"><b>Sign Up</b></h1>
+        <form method="post" enctype="multipart/form-data" action="{% url 'todo:signup' %}">
+            {% csrf_token %}
+            <div class="border border-secondary rounded p-5" style="">
+                {% for f in form%}
+                    <div class="form-group">
+                        {{ f.errors }}
+                        {{ f.label }} {{ f|add_class:"form-control"}}
+                        {% if f.help_text %}
+                        <p class="help">{{ f.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="form-group" style="padding:20px 0">
+                    <input type="submit" value="Create" class="btn btn-primary"/>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</main>
+
+{% endblock  %}

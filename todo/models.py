@@ -1,26 +1,28 @@
 import datetime
-
+from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.db import models
 from django import forms
 
 # Create your models here.
+class ToDoUser(AbstractUser):
+    pass
 
 class Task(models.Model):
     STATE_CHOICES = {
         ("ToDo", "ToDo"),
-        ("Do"  , "Do"  ),
         ("Done", "Done"),
     }
 
+    user_id = models.ForeignKey(ToDoUser, on_delete=models.CASCADE)
     state = models.CharField(
         max_length = 4,
         choices    = STATE_CHOICES,
         default = "ToDo",
     )
-
     task = models.CharField(max_length=200)
     deadline = models.DateTimeField('deadline')
+    
 
     def __str__(self):
         return self.task
@@ -30,12 +32,6 @@ class Task(models.Model):
         stateがdone
         """
         return self.state == "Done"
-
-    def state_is_do(self):
-        """
-        stateがdo
-        """
-        return self.state == "Do"
     
     def state_is_todo(self):
         """

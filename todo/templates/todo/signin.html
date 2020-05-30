@@ -1,0 +1,22 @@
+{% extends "todo/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container">
+        <h1 class="m-3"><b>Sign In</b></h1>
+        <form method="post" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+            <div class="border border-secondary rounded p-5" style="border-width:5px">
+                {{ form }}
+                <div class="form-group" style="padding:20px 0">
+                    <input type="submit" value="Signin" class="btn btn-primary"/>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</main>
+
+{% endblock  %}

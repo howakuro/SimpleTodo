@@ -1,0 +1,14 @@
+{% extends "todo/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container">
+        <h1 class="m-3"><b>SignUp Success!!</b></h1>
+        <p>ユーザー登録に成功しました。</p>
+        <button type="button" class="btn btn-primary" onclick="location.href='{% url 'todo:tasks' %}'">MyPage</button>
+    </div>
+</main>
+
+{% endblock  %}
