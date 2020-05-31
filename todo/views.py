@@ -7,7 +7,7 @@ from django.db.models import F
 from django.utils import timezone
 from .models import Task, ToDoUser
 from .forms import TaskForm, SignUpForm, LoginForm
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
@@ -87,7 +87,8 @@ class SineUpView(View):
             password2 = form.cleaned_data["password2"]
             if password1 == password2:
                 ToDoUser.objects.create_user(username, email, password1)
-                authenticate(username=username, password=password1)
+                user = authenticate(request, username=username, password=password1)
+                login(request, user)
                 return render(request, 'todo/signup_ok.html', { })
         return render(request, 'todo/signup.html', {
             "input_error_text": True,
