@@ -11,7 +11,9 @@
             <div class="border border-secondary rounded p-5" style="">
                 {% for f in form%}
                     <div class="form-group">
-                        {{ f.errors }}
+                        {% if f.errors %}
+                        <div class="text-danger">{{ f.errors }}</div>
+                        {% endif %}
                         {{ f.label }} {{ f|add_class:"form-control"}}
                         {% if f.help_text %}
                         <p class="help">{{ f.help_text|safe }}</p>
@@ -27,4 +29,4 @@
     </div>
 </main>
 
-{% endblock  %}
+{% endblock %}

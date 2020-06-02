@@ -20,7 +20,7 @@
                     {% endif %}
                             <td>{{ todo.task }}</td>
                             <td>{{ todo.state }}</td>
-                            <td>{{ todo.deadline }}</td>
+                            <td>{{ todo.deadline|date:"Y/m/d H:i"}}</td>
                             <td>
                                 <div class="float-right">
                                     {% if not todo.state_is_done %}

@@ -129,3 +129,7 @@ LOGIN_REDIRECT_URL = '/tasks'
 LOGOUT_REDIRECT_URL='/'
 
 AUTH_USER_MODEL = 'todo.ToDoUser'
+
+#DATE_INPUT_FORMATS
+from django.conf.global_settings import DATETIME_INPUT_FORMATS 
+DATETIME_INPUT_FORMATS += ('%Y/%m/%d',)
