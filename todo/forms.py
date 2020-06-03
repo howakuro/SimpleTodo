@@ -35,14 +35,27 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = field.label   
-            
+            field.widget.attrs['placeholder'] = field.label
+        self.fields['username'].label = 'Username'
+        self.fields['password'].label = 'Password'
+    class Meta:
+        model = ToDoUser
+        fields = ('username', 'password')
+        labels = {
+            'username':'Username',
+            'password':'Password',
+        }
+
 class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = field.label  
+            field.widget.attrs['placeholder'] = field.label
+        self.fields['username'].label = 'Username'
+        self.fields['email'].label = 'E-Mail'
+        self.fields['password1'].label = 'Password'
+        self.fields['password2'].label = 'Password（確認用）'
     class Meta:
         model = ToDoUser
         fields = ('username', 'email', 'password1', 'password2')
