@@ -82,11 +82,10 @@ class SineUpView(View):
         form = SignUpForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
-            email = form.cleaned_data["email"]
             password1 = form.cleaned_data["password1"]
             password2 = form.cleaned_data["password2"]
             if password1 == password2:
-                ToDoUser.objects.create_user(username, email, password1)
+                ToDoUser.objects.create_user(username=username, password=password1)
                 user = authenticate(request, username=username, password=password1)
                 login(request, user)
                 return render(request, 'todo/signup_ok.html', { })
