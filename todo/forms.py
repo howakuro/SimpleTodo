@@ -24,7 +24,7 @@ class TaskForm(forms.ModelForm):
             ),
             'deadline': forms.DateTimeInput(
                 attrs={
-                    'placeholder':'2020/05/26 17:45',
+                    'placeholder':'2020-05-26 17:45',
                     'class':"form-control"
                 },
             ),
