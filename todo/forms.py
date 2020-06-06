@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
+import bootstrap_datepicker_plus as datetimepicker
 from .models import Task, ToDoUser
 
 class TaskForm(forms.ModelForm):
@@ -22,12 +23,19 @@ class TaskForm(forms.ModelForm):
                     'class':"form-control",
                 }
             ),
-            'deadline': forms.DateTimeInput(
-                attrs={
-                    'placeholder':'2020-05-26 17:45',
-                    'class':"form-control"
-                },
-            ),
+            # 'deadline': forms.DateTimeInput(
+            #     attrs={
+            #         'placeholder':'2020-05-26 17:45',
+            #         'class':"form-control"
+            #     },
+            # ),
+            'deadline': datetimepicker.DateTimePickerInput(
+                format='%Y-%m-%d %H:%M:%S',
+                options={
+                    'locale': 'ja',
+                    'dayViewHeaderFormat': 'YYYY年 MMMM',
+                }
+            )
         }
 
 class LoginForm(AuthenticationForm):

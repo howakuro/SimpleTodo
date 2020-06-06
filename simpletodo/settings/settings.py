@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo.apps.TodoConfig',
     'widget_tweaks',
-    'datetimewidget',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -133,4 +133,5 @@ AUTH_USER_MODEL = 'todo.ToDoUser'
 
 #DATE_INPUT_FORMATS
 from django.conf.global_settings import DATETIME_INPUT_FORMATS 
-DATETIME_INPUT_FORMATS += ('%Y/%m/%d',)
+DATETIME_INPUT_FORMATS += ('%Y/%m/%d')
+
