@@ -26,8 +26,13 @@
                             {{ form.deadline.errors }}
                             <label for="{{ form.deadline.id_for_label }}">Limit:</label>
                             {{ form.deadline }}
-                            <p>注意：Limitの日付や時間が1桁である場合は必ず先頭に0埋めをしてください。
-                               例:2020年1月1日 1時1分 → 2020-01-01 01:01</p>
+                            {{ form.media }}
+                            <ul>
+                                <li>右のカレンダーボタンよりGUI入力が可能です。</li>
+                                <li>Limitの日付や時間が1桁である場合は必ず先頭に0埋めをしてください。</li>
+                                <li>例：2020年1月1日 1時1分 → 2020-01-01 01:01</li>
+                            </ul>
+                
                         </div>
                         <div class="form-group" style="padding:20px 0">
                             {% if not form %}
