@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo.apps.TodoConfig',
     'widget_tweaks',
+    "bootstrap4",
     'bootstrap_datepicker_plus',
 ]
 
