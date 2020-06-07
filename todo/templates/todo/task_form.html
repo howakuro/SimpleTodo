@@ -1,6 +1,5 @@
 {% extends "todo/base.html" %}
 {% load static %}
-
 {% block main %}
     <main>
         <div class="container">
@@ -43,7 +42,7 @@
                     </div>
                 </form>
         </div>
+        <link rel="stylesheet" href="{% static 'task_form/task_form.css' %}">
+        <script src="{% static 'task_form/task_form.js' %}"></script>
     </main>
-    <link rel="stylesheet" href="{% static 'todo/task_form/task_form.css' %}">
-    <script src="{% static 'todo/task_form/task_form.js' %}"></script>
 {% endblock %}
