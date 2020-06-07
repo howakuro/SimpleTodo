@@ -124,6 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'todo/static/'),
+)
 
 #Login
 LOGIN_URL = '/signin' 
@@ -135,4 +139,5 @@ AUTH_USER_MODEL = 'todo.ToDoUser'
 #DATE_INPUT_FORMATS
 from django.conf.global_settings import DATETIME_INPUT_FORMATS 
 DATETIME_INPUT_FORMATS += ('%Y/%m/%d')
+
 
